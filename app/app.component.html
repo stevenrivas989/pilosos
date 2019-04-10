@@ -1,0 +1,57 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>PILOSOS</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<section class="container-content">
+
+  <mat-card class="card-operation">
+    <mat-card-title class="title-operation">OPERACIÓN{{operation}}</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class="card-operation-content">
+      <div>
+        <form #s="ngForm" (ngSubmit)="selectStudentByCod(s)">
+          <p>Ingresa el código del estudiante para realizar la operación</p>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Código del estudiante" required ngModel #codStudent="ngModel" name="codStudent"
+              matInput id="codStudent" type="number">
+          </mat-form-field>
+          &nbsp;&nbsp;&nbsp;
+          <button mat-raised-button color="primary" type="submit">Consultar</button>
+        </form>
+      </div>
+      <div class="operationStudent" *ngIf="operationStudent">
+        <hr>
+        <p>Nombre del Estudiante: {{nameStudent}}</p>
+        <p>Puntaje del Estudiante: {{studentPoint}}</p>
+        <mat-form-field>
+          <mat-label>Operaciones</mat-label>
+          <mat-select (selectionChange)="selectOperation()" [(ngModel)]="operationModel" name="operation">
+            <mat-option value="" selected disabled>Seleccionar</mat-option>
+            <mat-option *ngFor="let operation of listOperations" [value]="operation.value">
+              {{operation.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <form #f="ngForm" class="form-calculator" (ngSubmit)="operationForm(f)">
+          <div class="container operationMath">
+            <div class="row">
+              <div *ngIf="operationMath" class="col-md-6 operationMathRandom">
+                <p><strong>Operación:</strong> {{number1}} {{operationSign}} {{number2}}</p>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input required ngModel #result="ngModel" name="result" matInput id="result" type="number"
+                    placeholder="Resultado" class="validate">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" *ngIf="operationMath" type="submit">{{buttonOperation}}</button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

@@ -1,0 +1,25 @@
+.form-calculator{
+    margin: 10px;
+}
+
+.container-content{
+    padding: 20px;
+}
+
+.title-operation{
+    font-size:20px;
+}
+
+.card-operation-content{
+    padding: 12px;
+}
+
+
+.card-operation{
+    font-size:20px;
+    margin:0;
+}
+
+.modal-message{
+    padding-bottom:7px;
+}
